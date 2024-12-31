@@ -1,12 +1,13 @@
 import React from 'react';
 import { Card, Button, Typography } from 'antd';
-import { ShoppingCartOutlined, DollarCircleOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
-const ProductCard = ({ product, handleAddToCart }) => {
-    const truncatedTitle = product.name.length > 100 
-        ? `${product.name.substring(0, 90)}...` 
+const CartCard = ({ product, handleRemove }) => {
+    // Ensure the title is visible fully
+    const truncatedTitle = product.name.length > 100
+        ? `${product.name.substring(0, 90)}...`
         : product.name;
 
     return (
@@ -15,9 +16,9 @@ const ProductCard = ({ product, handleAddToCart }) => {
             style={{
                 width: 300,
                 margin: '16px auto',
-                padding: '24px',
+                padding: '24px',  // Adjusted padding for a better look
                 alignItems: 'center',
-                textAlign: 'center',
+                textAlign: 'center'
             }}
             cover={
                 <img
@@ -27,6 +28,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
                 />
             }
         >
+            {/* Title */}
             <Card.Meta
                 title={
                     <Text style={{ fontWeight: 'bold', fontSize: '16px' }}>
@@ -35,12 +37,13 @@ const ProductCard = ({ product, handleAddToCart }) => {
                 }
                 description={
                     <div>
+                        {/* Features List */}
                         <ul
                             style={{
                                 paddingLeft: '16px',
                                 listStyle: 'disc',
-                                color: '#444',
-                                fontWeight: 500,
+                                color: '#444', // Darker text color
+                                fontWeight: 500, // Bolder text
                             }}
                         >
                             {product.features.map((feature, index) => (
@@ -49,15 +52,19 @@ const ProductCard = ({ product, handleAddToCart }) => {
                                 </li>
                             ))}
                         </ul>
+
+                        {/* Price */}
                         <Text style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
                             ₹{product.price}
                         </Text>
                     </div>
                 }
             />
+            {/* Buttons */}
             <div
                 style={{
                     display: 'flex',
+                    flexDirection: 'column',
                     justifyContent: 'center',
                     gap: '16px',
                     marginTop: '16px',
@@ -67,17 +74,18 @@ const ProductCard = ({ product, handleAddToCart }) => {
                 <Button type="primary" icon={<ShoppingCartOutlined />}>
                     Buy Now
                 </Button>
-                <Button
-                    type="primary"
-                    danger
-                    icon={<DollarCircleOutlined />}
-                    onClick={() => handleAddToCart(product)}
+                {/* Remove button with handler */}
+                <Button 
+                    type="primary" 
+                    danger 
+                    icon={<ShoppingCartOutlined />} 
+                    onClick={() => handleRemove(product)} // Trigger removal
                 >
-                    Add to Cart
+                    Remove from cart
                 </Button>
             </div>
         </Card>
     );
 };
 
-export default ProductCard;
+export default CartCard;

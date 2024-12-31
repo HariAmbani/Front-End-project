@@ -1,15 +1,17 @@
 import './App.css';
 import MainLayout from './pages/MainLayout';
-import LoginPage from './pages/LoginPage';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
+import React, { useState } from 'react';
 
 function App() {
+  const [cartItems, setCartItems] = useState([]);  // Manage cart state
+
   return (
     <div>
       <BrowserRouter>
         <AuthProvider>
-          <MainLayout/>
+          <MainLayout cartItems={cartItems} setCartItems={setCartItems} />
         </AuthProvider>
       </BrowserRouter>
     </div>

@@ -1,9 +1,27 @@
-import React from 'react';
-import { Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { Row, Col, Spin } from 'antd'; // Import Spin for the loading spinner
 import ProductCard from '../components/ProductCard';
-import productimage1 from "../assets/product 1 samsung phone.jpg"
+import { useNavigate } from 'react-router-dom'; // Import navigate
 
-const HomePage = () => {
+import productimage1 from "../assets/product 1 samsung phone.jpg";
+
+const HomePage = ({ cartItems, setCartItems }) => {
+    const navigate = useNavigate();  // Initialize navigate
+    const [loading, setLoading] = useState(false);  // State for loading
+
+    // Function to handle adding item to cart with a 2-second delay
+    const handleAddToCart = (product) => {
+        setLoading(true);  // Set loading to true
+        setTimeout(() => {
+            setCartItems((prevItems) => [...prevItems, product]);
+            setLoading(false);  // Set loading to false after 2 seconds
+        }, 250);
+    };
+
+    const goToCartPage = () => {
+        navigate('/cart');  // Navigate to the cart page when clicked
+    };
+
     const products = [
         {
             name: 'Samsung Galaxy S23 ultra Smartphone',
@@ -104,13 +122,35 @@ const HomePage = () => {
     ];
 
     return (
-        <Row gutter={[16, 16]} justify="center" style={{ padding: '24px' }}>
-            {products.map((product, index) => (
-                <Col key={index} xs={24} sm={12} md={6}>
-                    <ProductCard product={product} />
-                </Col>
-            ))}
-        </Row>
+        <div>
+            {/* Show loading spinner if loading is true */}
+            {loading ? (
+                <div style={{ textAlign: 'center', padding: '50px' }}>
+                    <Spin size="large" tip="Adding to Cart..." />
+                </div>
+            ) : (
+                <Row gutter={[16, 16]} justify="center" style={{ padding: '24px' }}>
+                    {products.map((product, index) => (
+                        <Col key={index} xs={24} sm={12} md={6}>
+                            <ProductCard product={product} handleAddToCart={handleAddToCart} />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+
+            {/* Add a button to navigate to the cart */}
+            <button
+                onClick={goToCartPage}
+                style={{
+                    position: 'fixed',
+                    bottom: '10px',
+                    right: '10px',
+                    padding: '10px',
+                }}
+            >
+                Go to Cart
+            </button>
+        </div>
     );
 };
 

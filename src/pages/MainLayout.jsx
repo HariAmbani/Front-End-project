@@ -8,8 +8,9 @@ import LoginPage from "./LoginPage";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import HomePage from "./HomePage";
+import CartPage from "./CartPage";
 
-function MainLayout() {
+function MainLayout({ cartItems, setCartItems }) {
     const { isLoggedIn, logout } = useContext(AuthContext);
     const [collapsed, setCollapsed] = useState(false); // State to track Sider collapse
 
@@ -33,30 +34,17 @@ function MainLayout() {
                     <Sider
                         collapsible
                         width={200}
-                        style={{ height: 'calc(100vh - 64px)', position: 'fixed'}}
+                        style={{ height: 'calc(100vh - 64px)', position: 'fixed' }}
                         breakpoint="lg"
                         collapsedWidth="80"
                         onCollapse={(collapsed) => setCollapsed(collapsed)} // Track collapse state
                     >
                         <Menu theme="dark" mode="inline" style={{ fontSize: '16px', padding: '10px 0' }}>
-                            <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: '18px' }} />}>
-                                <Link to="/">Home</Link>
-                            </Menu.Item>
-                            <Menu.Item key="2" icon={<UserOutlined style={{ fontSize: '18px' }} />}>
-                                <Link to="/admin">Admin</Link>
-                            </Menu.Item>
-                            <Menu.Item key="3" icon={<ShoppingCartOutlined style={{ fontSize: '18px' }} />}>
-                                <Link to="/cart">Your Cart</Link>
-                            </Menu.Item>
-                            <Menu.Item key="4" icon={<DropboxOutlined style={{ fontSize: '18px' }} />}>
-                                <Link to="/orders">Your Orders</Link>
-                            </Menu.Item>
-                            <Menu.Item key="5" icon={<SettingOutlined style={{ fontSize: '18px' }} />}>
-                                <Link to="/settings">Settings</Link>
-                            </Menu.Item>
-                            <Menu.Item key="6" icon={<QuestionCircleFilled style={{ fontSize: '18px' }} />}>
-                                <Link to="/help">Help</Link>
-                            </Menu.Item>
+                            <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: '18px' }} />}><Link to="/">Home</Link></Menu.Item>
+                            <Menu.Item key="2" icon={<UserOutlined style={{ fontSize: '18px '}} />}><Link to="/admin">Admin</Link></Menu.Item>
+                            <Menu.Item key="3" icon={<ShoppingCartOutlined style={{ fontSize: '18px' }} />}><Link to="/cart">Your Cart</Link></Menu.Item>
+                            <Menu.Item key="4" icon={<DropboxOutlined style={{ fontSize: '18px' }} />}><Link to="/orders">Your Orders</Link></Menu.Item>
+                            <Menu.Item key="5" icon={<QuestionCircleFilled style={{ fontSize: '18px' }} />}><Link to="/help">Help</Link></Menu.Item>
                         </Menu>
                     </Sider>
 
@@ -69,11 +57,9 @@ function MainLayout() {
                         height: 'calc(100vh - 64px)'
                     }}>
                         <Routes>
-                            <Route path="/" element={<HomePage></HomePage>} />
-                            <Route path="/admin" element={<p>Admin</p>} />
-                            <Route path="/cart" element={<p>Cart</p>} />
+                            <Route path="/" element={<HomePage cartItems={cartItems} setCartItems={setCartItems} />} />
+                            <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
                             <Route path="/orders" element={<p>Orders</p>} />
-                            <Route path="/settings" element={<p>Settings</p>} />
                             <Route path="/help" element={<p>Help</p>} />
                         </Routes>
                     </Content>
