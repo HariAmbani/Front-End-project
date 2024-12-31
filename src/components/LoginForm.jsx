@@ -11,7 +11,7 @@ const LoginForm = () => {
     setError('');
 
     // Validate credentials
-    if (values.username === "admin" && values.password === "admin123") {
+    if (values.username === "admin" && values.password === "admin") {
       login();
     } else {
       setError('Invalid Credentials');

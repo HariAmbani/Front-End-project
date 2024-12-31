@@ -5,11 +5,13 @@ import logo from "../assets/file.png";
 import { UserOutlined, HomeOutlined, ShoppingCartOutlined, DropboxOutlined, QuestionCircleFilled, SettingOutlined } from '@ant-design/icons';
 import { Link, Route, Routes } from "react-router-dom";
 import LoginPage from "./LoginPage";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import HomePage from "./HomePage";
 
 function MainLayout() {
     const { isLoggedIn, logout } = useContext(AuthContext);
+    const [collapsed, setCollapsed] = useState(false); // State to track Sider collapse
 
     return (
         isLoggedIn ? (
@@ -31,9 +33,10 @@ function MainLayout() {
                     <Sider
                         collapsible
                         width={200}
-                        style={{ height: 'calc(100vh - 64px)', overflow: 'auto' }}
+                        style={{ height: 'calc(100vh - 64px)', position: 'fixed'}}
                         breakpoint="lg"
                         collapsedWidth="80"
+                        onCollapse={(collapsed) => setCollapsed(collapsed)} // Track collapse state
                     >
                         <Menu theme="dark" mode="inline" style={{ fontSize: '16px', padding: '10px 0' }}>
                             <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: '18px' }} />}>
@@ -58,9 +61,15 @@ function MainLayout() {
                     </Sider>
 
                     {/* Content */}
-                    <Content style={{ padding: '24px', backgroundColor: '#F1F1F1' }}>
+                    <Content style={{
+                        padding: '24px',
+                        backgroundColor: '#F1F1F1',
+                        marginLeft: collapsed ? 80 : 200, // Adjust based on collapsed state
+                        overflowY: 'auto',
+                        height: 'calc(100vh - 64px)'
+                    }}>
                         <Routes>
-                            <Route path="/" element={<p>Home</p>} />
+                            <Route path="/" element={<HomePage></HomePage>} />
                             <Route path="/admin" element={<p>Admin</p>} />
                             <Route path="/cart" element={<p>Cart</p>} />
                             <Route path="/orders" element={<p>Orders</p>} />
