@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Typography, notification } from 'antd';
+import { Row, Col, Typography, notification, Empty } from 'antd';
 import CartCard from '../components/CartCard';
 
 const { Text } = Typography;
@@ -10,13 +10,10 @@ const CartPage = ({ cartItems, setCartItems, setOrderItems }) => {
   };
 
   const handleBuyNow = (product) => {
-    // Add the product to the order items
     setOrderItems((prevItems) => [...prevItems, product]);
 
-    // Remove the product from the cart
     handleRemoveProduct(product);
 
-    // Show success notification when buying now
     notification.success({
       message: "Order Placed",
       description: "Your order has been placed successfully!",
@@ -27,9 +24,18 @@ const CartPage = ({ cartItems, setCartItems, setOrderItems }) => {
   return (
     <div style={{ padding: '24px', minHeight: '100vh', textAlign: 'center' }}>
       {cartItems.length === 0 ? (
-        <div style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold", marginTop: "20%" }}>
-          <p>Your cart is empty</p>
-        </div>
+        <Empty
+          description={
+            <Text strong style={{ fontSize: "20px" }}>
+              Your Cart is Empty
+            </Text>
+          }
+          style={{
+            padding: "100px 50px", // Increase padding
+            textAlign: "center", // Align content to the left
+            marginTop: "5%", // Push it down vertically
+          }}
+        />
       ) : (
         <div>
           <div style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold" }}>

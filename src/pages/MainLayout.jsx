@@ -10,6 +10,8 @@ import { AuthContext } from "../Context/AuthContext";
 import HomePage from "./HomePage";
 import CartPage from "./CartPage";
 import OrderPage from "./OrderPage";
+import AdminPage from "./AdminPage";
+import ProductsProvider from "../Data/ProductDetails"
 
 function MainLayout({ cartItems, setCartItems }) {
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -77,6 +79,7 @@ function MainLayout({ cartItems, setCartItems }) {
             height: "calc(100vh - 64px)",
           }}
         >
+          <ProductsProvider>
           <Routes>
             <Route
               path="/"
@@ -89,7 +92,9 @@ function MainLayout({ cartItems, setCartItems }) {
                 />
               }
             />
-            <Route path="/admin" element={<p>Admin</p>} />
+            <Route
+              path="/admin"
+              element={<AdminPage />} />
             <Route
               path="/cart"
               element={<CartPage cartItems={cartItems} setCartItems={setCartItems} setOrderItems={setOrderItems} />}
@@ -100,6 +105,7 @@ function MainLayout({ cartItems, setCartItems }) {
             />
             <Route path="/help" element={<p>Help</p>} />
           </Routes>
+          </ProductsProvider>
         </Content>
       </Layout>
 

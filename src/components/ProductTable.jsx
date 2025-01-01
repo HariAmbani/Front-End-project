@@ -1,16 +1,14 @@
+//under testing (not testing its functionality)
 import React from "react";
 import { Table, Button, Typography } from "antd";
-import moment from "moment";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
-const OrderCard = ({ product, setOrderItems }) => {
+const ProductTable = ({ product, setOrderItems }) => {
   const handleCancelOrder = () => {
     setOrderItems((prevItems) => prevItems.filter(item => item.name !== product.name));
   };
-
-  const deliveryDate = moment().add(2, "days").format("MMM Do YYYY");
 
   const columns = [
     {
@@ -32,14 +30,21 @@ const OrderCard = ({ product, setOrderItems }) => {
       render: (name) => <Text strong>{name}</Text>,
     },
     {
-      title: "Delivery Date",
-      dataIndex: "deliveryDate",
-      key: "deliveryDate",
-      render: (date) => (
+      title: "Product Features",
+      dataIndex: "features",
+      key: "features",
+      render: (features) => (
         <div>
-          <Text strong>Delivery Date: {date}</Text>
-          <br />
-          <Text strong>Will be delivered in just 2 days</Text>
+          {features.map((feature, index) => (
+            <div key={index} style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={feature.image}
+                alt={feature.name}
+                style={{ height: "40px", objectFit: "contain", marginRight: "8px" }}
+              />
+              <Text>{feature.name}</Text>
+            </div>
+          ))}
         </div>
       ),
     },
@@ -64,7 +69,7 @@ const OrderCard = ({ product, setOrderItems }) => {
       key: product.name,
       image: product.image,
       name: product.name,
-      deliveryDate,
+      features: product.features, // Directly use product.features
     },
   ];
 
@@ -78,4 +83,4 @@ const OrderCard = ({ product, setOrderItems }) => {
   );
 };
 
-export default OrderCard;
+export default ProductTable;
