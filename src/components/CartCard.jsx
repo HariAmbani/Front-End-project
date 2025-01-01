@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, Button, Typography } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
-const CartCard = ({ product, handleRemove }) => {
+const CartCard = ({ product, handleRemove, handleBuyNow }) => {
     // Ensure the title is visible fully
     const truncatedTitle = product.name.length > 100
         ? `${product.name.substring(0, 90)}...`
@@ -71,14 +71,14 @@ const CartCard = ({ product, handleRemove }) => {
                     alignItems: 'center',
                 }}
             >
-                <Button type="primary" icon={<ShoppingCartOutlined />}>
+                <Button type="primary" icon={<ShoppingCartOutlined />} onClick={() => handleBuyNow(product)}>
                     Buy Now
                 </Button>
                 {/* Remove button with handler */}
                 <Button 
                     type="primary" 
                     danger 
-                    icon={<ShoppingCartOutlined />} 
+                    icon={<CloseCircleOutlined />} 
                     onClick={() => handleRemove(product)} // Trigger removal
                 >
                     Remove from cart

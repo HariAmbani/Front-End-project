@@ -4,7 +4,7 @@ import { ShoppingCartOutlined, DollarCircleOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
-const ProductCard = ({ product, handleAddToCart }) => {
+const ProductCard = ({ product, handleAddToCart, handleBuyNow }) => {
     const truncatedTitle = product.name.length > 100 
         ? `${product.name.substring(0, 90)}...` 
         : product.name;
@@ -64,7 +64,11 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     alignItems: 'center',
                 }}
             >
-                <Button type="primary" icon={<ShoppingCartOutlined />}>
+                <Button 
+                    type="primary" 
+                    icon={<ShoppingCartOutlined />}
+                    onClick={() => handleBuyNow(product)}
+                >
                     Buy Now
                 </Button>
                 <Button
@@ -72,6 +76,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     danger
                     icon={<DollarCircleOutlined />}
                     onClick={() => handleAddToCart(product)}
+                    //style={{backgroundColor:"green"}}
                 >
                     Add to Cart
                 </Button>
