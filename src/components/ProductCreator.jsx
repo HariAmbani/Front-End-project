@@ -20,6 +20,7 @@ import productimage14 from "../assets/product 14 samsung buds 3.jpg"
 import productimage15 from "../assets/product 15 BENQ projector.jpg"
 import productimage16 from "../assets/product 16 MI powerbank.jpg"
 
+
 // List of available images
 const availableImages = [
   { src: productimage1, alt: 'Samsung Phone' },

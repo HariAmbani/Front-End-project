@@ -17,7 +17,7 @@ const HelpPage = () => {
       }}
     >
       <Row justify="center" style={{ padding: '50px 0' }}>
-        <Col xs={24} sm={18} md={12} lg={10}>
+        <Col xs={24} sm={18} md={12} lg={11}>
           <Card
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -83,7 +83,7 @@ const HelpPage = () => {
 
             <Title level={4}>Email Support</Title>
             <Paragraph>
-              Alternatively, you can email us at <a href="mailto:support@ecommerce.com">support@ecommerce.com</a> for any inquiries.
+              Alternatively, you can email us at <a href="mailto:ambanihari2004@gmail.com">" ambanihari2004@gmail.com "</a> for any inquiries.
             </Paragraph>
           </Card>
         </Col>
