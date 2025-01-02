@@ -12,6 +12,7 @@ import CartPage from "./CartPage";
 import OrderPage from "./OrderPage";
 import AdminPage from "./AdminPage";
 import ProductsProvider from "../Data/ProductDetails"
+import HelpPage from "./HelpPage";
 
 function MainLayout({ cartItems, setCartItems }) {
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -103,7 +104,7 @@ function MainLayout({ cartItems, setCartItems }) {
               path="/orders"
               element={<OrderPage orderItems={orderItems} setOrderItems={setOrderItems} />} // Pass setOrderItems to OrderPage
             />
-            <Route path="/help" element={<p>Help</p>} />
+            <Route path="/help" element={<HelpPage></HelpPage>} />
           </Routes>
           </ProductsProvider>
         </Content>

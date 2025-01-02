@@ -3,17 +3,41 @@ import { ProductsContext } from '../Data/ProductDetails';
 import { Form, Input, InputNumber, Button, notification, Modal, Row, Col, Image } from 'antd';
 
 // Import images directly
-import product1image from "../assets/product 1 samsung phone.jpg";
-import product2image from "../assets/product 2 asus laptop.jpg";
-import product3image from "../assets/product 3 sony headphones.webp";
-import product4image from "../assets/product 4 logitech .jpg";
+import productimage1 from "../assets/product 1 samsung phone.jpg";
+import productimage2 from "../assets/product 2 asus laptop.jpg";
+import productimage3 from "../assets/product 3 sony headphones.webp";
+import productimage4 from "../assets/product 4 logitech .jpg";
+import productimage5 from "../assets/product 5 samsung watch.jpg"
+import productimage6 from "../assets/product 6 apple ipad pro 12.2.jpg"
+import productimage7 from "../assets/product 11 sasmung QLED TV.jpg"
+import productimage8 from "../assets/product 8 Razer Gaming mouse.jpg"
+import productimage9 from "../assets/product 9 WD 2TB.jpg"
+import productimage10 from "../assets/product 10 go pro action camera.jpg"
+import productimage11 from "../assets/product 7 marshal speakers.jpg"
+import productimage12 from "../assets/product 12 DJI drone.jpg"
+import productimage13 from "../assets/product 13 logitech gaming mouse.jpg"
+import productimage14 from "../assets/product 14 samsung buds 3.jpg"
+import productimage15 from "../assets/product 15 BENQ projector.jpg"
+import productimage16 from "../assets/product 16 MI powerbank.jpg"
 
 // List of available images
 const availableImages = [
-  { src: product1image, alt: 'Samsung Phone' },
-  { src: product2image, alt: 'Asus Laptop' },
-  { src: product3image, alt: 'Sony Headphones' },
-  { src: product4image, alt: 'Logitech' },
+  { src: productimage1, alt: 'Samsung Phone' },
+  { src: productimage2, alt: 'Asus Laptop' },
+  { src: productimage3, alt: 'Sony Headphones' },
+  { src: productimage4, alt: 'Logitech' },
+  { src: productimage5, alt: 'Aamsung Watch' },
+  { src: productimage6, alt: 'Apple Ipad' },
+  { src: productimage7, alt: 'Samsung Tv' },
+  { src: productimage8, alt: 'Razer Mouse' },
+  { src: productimage9, alt: 'WD Hard Disk' },
+  { src: productimage10, alt: 'Go Pro Camera' },
+  { src: productimage11, alt: 'Marshal Bluetooth Speaker' },
+  { src: productimage12, alt: 'DJI Drone' },
+  { src: productimage13, alt: 'Logitech Mouse' },
+  { src: productimage14, alt: 'Samsung TWS' },
+  { src: productimage15, alt: 'BENQ Projector' },
+  { src: productimage16, alt: 'MI Powerbank' },
 ];
 
 const ProductCreator = () => {
