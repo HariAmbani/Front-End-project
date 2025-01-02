@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+This is Front-end Ecommerce website project focused on electronic products and created using react.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pages used in this project
+-> Login page
+-> Home page
+-> Admin page
+-> Cart page
+-> Orders page
+-> Help page
 
-## Available Scripts
+Login page :-
+--------------
+The application was initially "logged in" to see how the application works and visually look , to see the login page click logout button appear on homepage's top right corner , since it is a front-end project so on login page for user validation username and password are "admin".
 
-In the project directory, you can run:
+used context API to acheive this functionality and a state variable.
 
-### `npm start`
+Homepage :-
+-------------
+here all products are displayed using card structure each row contain 4 products.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+each card contain two buttons "add to cart" and "buy now"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+functionalities of the two buttons :-
+-> add to cart : places the product in cart page (we see in-depth on cart page)
+-> buy now : places the product in orders page (we see in-depth on orders page)
 
-### `npm test`
+for well structured manner :-
+->The card structures is defined in seperate jsx file called ProductCard.jsx under Components folder
+->The product details for defines in seperate jsx file called ProductDetails.jsx under Data folder
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+product detail
+--------------
+each product contain a photo, name, features and price details to expain about them 
 
-### `npm run build`
+Admin page :-
+---------------
+this page contains 2 parts they are product creator and Products Manager
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+product creator
+--------------
+-> used to create a new product , contain 4 field called product name , features , price and photo
+its design is present in ProductCreadtor.jsx
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+products Manager
+----------------
+-> all the existing product and their details will be visible here.
+-> each product have 2 buttons , they are edit to modify the contents of the existing products , the changes simultaneously reflect in homepage . 
+And delete used to remove the product from home page
+its design is present in ProductTable.jsx
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+product creator and product manager are used by admin to create , modify and delete products in order the control the website 
 
-### `npm run eject`
+Cart Page :-
+-------------
+When "add to cart" button clicked in a product of homepage , the product is added here 
+-> cart page products are designed using card design it is defined present in CartCard.jsx
+-> Cart card also have 2 button they are "buy now" and "remove from cart" 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+functionalities of the 2 buttons :
+-> buy now : add the product to the orders page
+-> remove from cart : remove the product from the cart page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Order Page :-
+----------------
+when "buy now" button clicked in a product of homepage , the product is added here
+-> Order page products are designed using Table design it is defined in ProductTable.jsx
+-> The ProductTable.jsx has 4 columns names as product photo , product name , delivery date , action 
+-> action column has "Cancel Order" button on each product to cancel the product and remove the product from orderpage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Help Page :-
+-------------
+Help page is used to 
+->convey the how to use the website to order product 
+->contain answer for FAQs
+->given contact number and email for further and specific clarifications
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+yeah that's the brief description of the ront-end Electronics Ecommerce website project using React.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
