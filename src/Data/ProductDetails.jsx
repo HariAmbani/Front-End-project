@@ -1,9 +1,8 @@
 import React, { useState, createContext } from "react";
-
-import productimage1 from "../assets/product 1 samsung phone.jpg"
-import productimage2 from "../assets/product 2 asus laptop.jpg"
-import productimage3 from "../assets/product 3 sony headphones.webp"
-import productimage4 from "../assets/product 4 logitech .jpg"
+import productimage1 from "../assets/product 1 samsung phone.jpg";
+import productimage2 from "../assets/product 2 asus laptop.jpg";
+import productimage3 from "../assets/product 3 sony headphones.webp";
+import productimage4 from "../assets/product 4 logitech .jpg";
 
 // Create a context for products
 export const ProductsContext = createContext();
@@ -36,12 +35,12 @@ const ProductsProvider = ({ children }) => {
     },
   ]);
 
-  const addProduct = (product) => {
-    setProducts((prevProducts) => [...prevProducts, product]);
+  const addProduct = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
   };
 
   return (
-    <ProductsContext.Provider value={{ products, addProduct }}>
+    <ProductsContext.Provider value={{ products, setProducts, addProduct }}>
       {children}
     </ProductsContext.Provider>
   );

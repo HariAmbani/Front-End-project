@@ -1,84 +1,85 @@
-//under testing (not testing its functionality)
-import React from "react";
-import { Table, Button, Typography } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import React, { useContext } from 'react';
+import { Table, Image, Button, notification } from 'antd';
+import { ProductsContext } from '../Data/ProductDetails';
 
-const { Text } = Typography;
+const ProductTable = ({ products }) => {
+  const { setProducts } = useContext(ProductsContext);
 
-const ProductTable = ({ product, setOrderItems }) => {
-  const handleCancelOrder = () => {
-    setOrderItems((prevItems) => prevItems.filter(item => item.name !== product.name));
+  const deleteProduct = (productName) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.name !== productName)
+    );
+    notification.success({
+      message: 'Product Deleted',
+      description: `${productName} has been deleted successfully!`,
+    });
   };
 
   const columns = [
     {
-      title: "Product Photo",
-      dataIndex: "image",
-      key: "image",
-      render: (image) => (
-        <img
-          src={image}
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
+      render: (text) => (
+        <Image
+          src={text}
           alt="Product"
-          style={{ height: "80px", objectFit: "contain" }}
+          width={50}
+          height={50}
+          style={{ objectFit: 'cover', borderRadius: '5px' }}
+          preview={false}
         />
       ),
     },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (name) => <Text strong>{name}</Text>,
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
-      title: "Product Features",
-      dataIndex: "features",
-      key: "features",
-      render: (features) => (
-        <div>
-          {features.map((feature, index) => (
-            <div key={index} style={{ display: "flex", alignItems: "center" }}>
-              <img
-                src={feature.image}
-                alt={feature.name}
-                style={{ height: "40px", objectFit: "contain", marginRight: "8px" }}
-              />
-              <Text>{feature.name}</Text>
-            </div>
-          ))}
-        </div>
-      ),
+      title: 'Features',
+      dataIndex: 'features',
+      key: 'features',
+      render: (features) => {
+        if (!Array.isArray(features) || features.length === 0) {
+          return 'No features available'; // Handle missing or invalid features
+        }
+        return features.map((feature, index) => (
+          <span key={index} style={{ display: 'block' }}>
+            - {feature}
+          </span>
+        ));
+      },
     },
     {
-      title: "Action",
-      key: "action",
-      render: () => (
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
+      render: (text) => `₹${text}`, // Format price with ₹
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      render: (_, record) => (
         <Button
           type="primary"
           danger
-          icon={<CloseCircleOutlined />}
-          onClick={handleCancelOrder}
+          onClick={() => deleteProduct(record.name)}
         >
-          Cancel
+          Delete Product
         </Button>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      key: product.name,
-      image: product.image,
-      name: product.name,
-      features: product.features, // Directly use product.features
     },
   ];
 
   return (
     <Table
       columns={columns}
-      dataSource={data}
-      pagination={false}
-      style={{ margin: "16px auto", maxWidth: "800px" }}
+      dataSource={products}
+      rowKey="name" // Use unique product names as the row key
+      bordered
+      pagination={{ pageSize: 4 }}
+      style={{ marginTop: '20px' }}
     />
   );
 };
